@@ -62,6 +62,7 @@ exports.init = function(grunt) {
 
         var dir = runner.data.dir,
             attr;
+
         config  = runner.options(defaults);
 
         for (attr in cliOptions) {
@@ -72,12 +73,10 @@ exports.init = function(grunt) {
 
         cmd = buildCommand(dir) + ' ' + grunt.file.expand(dir).join(',');
 
-        console.log(cmd);
-
         grunt.log.writeln('Starting pdepend (target: ' + runner.target.cyan + ') in ' + dir.join(' ').cyan);
         grunt.verbose.writeln('Exec: ' + cmd);
 
-        done    = runner.async();
+        done = runner.async();
     };
 
     /**
@@ -87,8 +86,6 @@ exports.init = function(grunt) {
     exports.run = function() {
 
         exec(cmd, function(err, stdout, stderr) {
-
-            console.log(cmd);
 
             if (stdout) {
                 grunt.log.write(stdout);
