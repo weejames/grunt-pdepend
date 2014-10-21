@@ -1,0 +1,15 @@
+{
+    "name": "weejames/grunt-pdepend",
+    "description": "Grunt plugin to run pdepend",
+    "require-dev": {
+        "pdepend/pdepend": "~2.0.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Constable",
+            "email": "me@jamesconstable.co.uk"
+        }
+    ],
+    "require": {}
+}
