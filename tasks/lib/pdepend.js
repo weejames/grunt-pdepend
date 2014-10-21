@@ -10,34 +10,21 @@ exports.init = function(grunt) {
         defaults = {
             // Default options
             bin: 'pdepend',
-            extensions: false,
-            ignore: false,
-            standard: false,
-            verbose: false,
-            reportFile: false,
-            report: 'full',
-            maxBuffer: 200*1024,
-            ignoreExitCode: false,
-            tabWidth: false
+            jdependChart: undefined,
+            jdependXml: undefined,
+            overviewPyramid: undefined,
         },
         cliOptions = {
-            errorSeverity: grunt.option('error-severity'),
-            extensions: grunt.option('extensions'),
-            ignore: grunt.option('ignore'),
-            report: grunt.option('report'),
-            reportFile: grunt.option('report-file'),
-            severity: grunt.option('severity'),
-            standard: grunt.option('standard'),
-            warningSeverity: grunt.option('warning-severity'),
-            verbose: grunt.option('verbose'),
-            tabWidth: grunt.option('tab-width')
+            jdependChart: grunt.option('jdepend-chart'),
+            jdependXml: grunt.option('jdepend-xml'),
+            overviewPyramid: grunt.option('overview-pyramid'),
         },
         cmd    = null,
         done   = null,
         config = {};
 
     /**
-     * Builds phpunit command
+     * Builds pdepend command
      *
      * @return string
      */
@@ -45,59 +32,22 @@ exports.init = function(grunt) {
 
         var cmd = path.normalize(config.bin);
 
-        if (config.errorSeverity !== undefined) {
+        if (config.jdependChart !== undefined) {
+            cmd += ' --jdepend-chart=' + config.jdependChart;
+        }
+
+        if (config.jdependXml !== undefined) {
+            cmd += ' --jdepend-xml=' + config.jdependXml;
+        }
+
+        if (config.overviewPyramid !== undefined) {
             // The minimum severity required to display an error or warning
-            cmd += ' --error-severity=' + config.errorSeverity;
+            cmd += ' --overview-pyramid=' + config.overviewPyramid;
         }
 
-        if (config.extensions) {
-            // A comma separated list of file extensions to check
-            cmd += ' --extensions=' + config.extensions;
-        }
-
-        if (config.ignore) {
-            // A comma separated list of patterns to ignore files and directories.
-            cmd += ' --ignore=' + config.ignore;
-        }
-
-        if (config.severity !== undefined) {
+        if (config.summaryXml !== undefined) {
             // The minimum severity required to display an error or warning
-            cmd += ' --severity=' + config.severity;
-        }
-
-        if (config.warningSeverity !== undefined) {
-            // The minimum severity required to display an error or warning
-            cmd += ' --warning-severity=' + config.warningSeverity;
-        }
-
-        if (config.standard) {
-            // Define the code sniffer standard.
-            cmd += ' --standard=' + config.standard;
-        }
-
-        if (config.reportFile) {
-            // Define the file to write the report to.
-            cmd += ' --report-file=' + config.reportFile;
-        }
-
-        if (config.report) {
-            // Define the style of the report.
-            cmd += ' --report=' + config.report;
-        }
-
-        if (config.verbose === true) {
-            // Output more verbose information.
-            cmd += ' -v';
-        }
-
-        if (config.showSniffCodes === true) {
-            // Show sniff codes in all reports
-            cmd += ' -s';
-        }
-
-        if (config.tabWidth) {
-            // Convert tabs to the specified number of spaces when sniffing
-            cmd += ' --tab-width=' + config.tabWidth;
+            cmd += ' --summary-xml=' + config.summaryXml;
         }
 
         return cmd;
@@ -120,7 +70,9 @@ exports.init = function(grunt) {
             }
         }
 
-        cmd     = buildCommand(dir) + ' ' + grunt.file.expand(dir).join(' ');
+        cmd = buildCommand(dir) + ' ' + grunt.file.expand(dir).join(',');
+
+        console.log(cmd);
 
         grunt.log.writeln('Starting pdepend (target: ' + runner.target.cyan + ') in ' + dir.join(' ').cyan);
         grunt.verbose.writeln('Exec: ' + cmd);
@@ -129,15 +81,14 @@ exports.init = function(grunt) {
     };
 
     /**
-     * Runs phpunit command with options
+     * Runs pdepend command with options
      *
      */
     exports.run = function() {
-        var cmdOptions = {
-            maxBuffer: config.maxBuffer
-        };
 
-        exec(cmd, cmdOptions, function(err, stdout, stderr) {
+        exec(cmd, function(err, stdout, stderr) {
+
+            console.log(cmd);
 
             if (stdout) {
                 grunt.log.write(stdout);
