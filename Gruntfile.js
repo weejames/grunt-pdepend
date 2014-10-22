@@ -27,16 +27,19 @@ module.exports = function(grunt) {
         // Configuration to be run (and then tested).
         pdepend: {
             default: {
+                dir: [
+                    'php'
+                ],
                 options: {
                     bin: 'vendor/bin/pdepend',
                     jdependChart: 'jdependChart.svg',
                     jdependXml: 'jdependXml.xml',
                     overviewPyramid: 'overviewPyramid.svg',
-                    summaryXml: 'summaryXml.xml'
-                },
-                dir: [
-                    'php'
-                ]
+                    summaryXml: 'summaryXml.xml',
+                    ignoreDirectories: [
+                        'ignore'
+                    ]
+                }
             }
         },
 

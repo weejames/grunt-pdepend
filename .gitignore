@@ -2,3 +2,7 @@ node_modules
 npm-debug.log
 tmp
 vendor
+jdependChart.svg
+jdependXml.xml
+overviewPyramid.svg
+summaryXml.xml

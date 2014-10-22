@@ -3,7 +3,7 @@
 > Grunt plugin to run pdepend
 
 ## Getting Started
-This plugin requires Grunt `~0.4.0`
+This plugin requires Grunt `~0.4.0`.  You also need to install [http://pdepend.org/](PDepend).  I recommend using [https://packagist.org/packages/pdepend/pdepend](composer).
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -28,7 +28,7 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
-    your_target: {
+    dir: {
       // Target-specific file lists and/or options go here.
     },
   },
@@ -67,6 +67,12 @@ Default value: `undefined`
 
 The path where you want to write the summary xml file to.
 
+#### options.ignoreDirectories
+Type: `Array`
+Default value: `undefined`
+
+An array containing the directories you want to ignore.  *Note:* only the name of the individual directory will work here - you can't use a path.
+
 
 ### Usage Examples
 
@@ -81,7 +87,11 @@ grunt.initConfig({
             jdependChart: 'jdependChart.svg',
             jdependXml: 'jdependXml.xml',
             overviewPyramid: 'overviewPyramid.svg',
-            summaryXml: 'summaryXml.xml'
+            summaryXml: 'summaryXml.xml',
+            ignoreDirectories: [
+                'test',
+                'static'
+            ]
         },
     },
 });
@@ -91,4 +101,6 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(No official releases yet)_
+
+*0.1.1* Implemented hook for summary XML file.  Implemented ignore directories function.
+*0.1.0* Initial release.

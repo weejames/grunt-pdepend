@@ -13,11 +13,15 @@ exports.init = function(grunt) {
             jdependChart: undefined,
             jdependXml: undefined,
             overviewPyramid: undefined,
+            summaryXml: undefined,
+            ignoreDirectories: undefined,
         },
         cliOptions = {
             jdependChart: grunt.option('jdepend-chart'),
             jdependXml: grunt.option('jdepend-xml'),
             overviewPyramid: grunt.option('overview-pyramid'),
+            summaryXml: grunt.option('summary-xml'),
+            ignoreDirectories: grunt.option('ignore'),
         },
         cmd    = null,
         done   = null,
@@ -41,13 +45,17 @@ exports.init = function(grunt) {
         }
 
         if (config.overviewPyramid !== undefined) {
-            // The minimum severity required to display an error or warning
             cmd += ' --overview-pyramid=' + config.overviewPyramid;
         }
 
         if (config.summaryXml !== undefined) {
-            // The minimum severity required to display an error or warning
             cmd += ' --summary-xml=' + config.summaryXml;
+        }
+
+        if (config.ignoreDirectories !== undefined) {
+            // ignore directories needs to be absolute
+
+            cmd += ' --ignore=' + config.ignoreDirectories;
         }
 
         return cmd;
@@ -74,7 +82,7 @@ exports.init = function(grunt) {
         cmd = buildCommand(dir) + ' ' + grunt.file.expand(dir).join(',');
 
         grunt.log.writeln('Starting pdepend (target: ' + runner.target.cyan + ') in ' + dir.join(' ').cyan);
-        grunt.verbose.writeln('Exec: ' + cmd);
+        grunt.log.debug('Exec: ' + cmd);
 
         done = runner.async();
     };
