@@ -15,6 +15,7 @@ exports.init = function(grunt) {
             overviewPyramid: undefined,
             summaryXml: undefined,
             ignoreDirectories: undefined,
+            debug: false
         },
         cliOptions = {
             jdependChart: grunt.option('jdepend-chart'),
@@ -22,6 +23,7 @@ exports.init = function(grunt) {
             overviewPyramid: grunt.option('overview-pyramid'),
             summaryXml: grunt.option('summary-xml'),
             ignoreDirectories: grunt.option('ignore'),
+            debug: grunt.option('debug'),
         },
         cmd    = null,
         done   = null,
@@ -53,9 +55,11 @@ exports.init = function(grunt) {
         }
 
         if (config.ignoreDirectories !== undefined) {
-            // ignore directories needs to be absolute
-
             cmd += ' --ignore=' + config.ignoreDirectories;
+        }
+
+        if (config.debug) {
+            cmd += ' --debug ';
         }
 
         return cmd;

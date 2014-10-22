@@ -36,6 +36,7 @@ module.exports = function(grunt) {
                     jdependXml: 'jdependXml.xml',
                     overviewPyramid: 'overviewPyramid.svg',
                     summaryXml: 'summaryXml.xml',
+                    debug: true,
                     ignoreDirectories: [
                         'ignore'
                     ]
