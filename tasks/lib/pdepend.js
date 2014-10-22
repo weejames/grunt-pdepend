@@ -15,6 +15,8 @@ exports.init = function(grunt) {
             overviewPyramid: undefined,
             summaryXml: undefined,
             coderankMode: 'inheritance',
+            coverageReport: undefined,
+            configuration: undefined,
             ignoreDirectories: undefined,
             debug: false
         },
@@ -24,6 +26,8 @@ exports.init = function(grunt) {
             overviewPyramid: grunt.option('overview-pyramid'),
             summaryXml: grunt.option('summary-xml'),
             coderankMode: grunt.option('coderank-mode'),
+            coverageReport: grunt.option('coverage-report'),
+            configuration: grunt.option('configuration'),
             ignoreDirectories: grunt.option('ignore'),
             debug: grunt.option('debug'),
         },
@@ -58,6 +62,14 @@ exports.init = function(grunt) {
 
         if (config.coderankMode !== undefined) {
             cmd += ' --coderank-mode=' + config.coderankMode;
+        }
+
+        if (config.coverageReport !== undefined) {
+            cmd += ' --coverage-report=' + config.coverageReport;
+        }
+
+        if (config.configuration !== undefined) {
+            cmd += ' --configuration=' + config.configuration;
         }
 
         if (config.ignoreDirectories !== undefined) {
