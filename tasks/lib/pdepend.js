@@ -14,6 +14,7 @@ exports.init = function(grunt) {
             jdependXml: undefined,
             overviewPyramid: undefined,
             summaryXml: undefined,
+            coderankMode: 'inheritance',
             ignoreDirectories: undefined,
             debug: false
         },
@@ -22,6 +23,7 @@ exports.init = function(grunt) {
             jdependXml: grunt.option('jdepend-xml'),
             overviewPyramid: grunt.option('overview-pyramid'),
             summaryXml: grunt.option('summary-xml'),
+            coderankMode: grunt.option('coderank-mode'),
             ignoreDirectories: grunt.option('ignore'),
             debug: grunt.option('debug'),
         },
@@ -52,6 +54,10 @@ exports.init = function(grunt) {
 
         if (config.summaryXml !== undefined) {
             cmd += ' --summary-xml=' + config.summaryXml;
+        }
+
+        if (config.coderankMode !== undefined) {
+            cmd += ' --coderank-mode=' + config.coderankMode;
         }
 
         if (config.ignoreDirectories !== undefined) {
