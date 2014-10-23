@@ -93,7 +93,7 @@ Default value: `undefined`
 Optional PDepend configuration file.
 
 
-#### options.suffix
+#### options.suffix *Pending*
 Type: `Array`
 Default value: `undefined`
 
@@ -107,14 +107,14 @@ Default value: `undefined`
 An array containing the directories you want to ignore.  *Note:* only the name of the individual directory will work here - you can't use a path.
 
 
-#### options.exclude
+#### options.exclude *Pending*
 Type: `Array`
 Default value: `undefined`
 
 An array of exclude namespaces.
 
 
-#### options.withoutAnnotations
+#### options.withoutAnnotations *Pending*
 Type: `Boolean`
 Default value: `false`
 
@@ -157,5 +157,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-*0.1.1* Implemented hook for summary XML file.  Implemented ignore directories function.
-*0.1.0* Initial release.
+**0.1.2** Implement Coderank Mode, Coverage Report, configuration file and debug settings.
+
+**0.1.1** Implemented hook for summary XML file.  Implemented ignore directories function.
+
+**0.1.0** Initial release.
