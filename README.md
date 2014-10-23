@@ -157,7 +157,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-**0.1.2** Implement Coderank Mode, Coverage Report, configuration file and debug settings.
+**0.1.2** Implemented Coderank Mode, Coverage Report, configuration file and debug settings.
 
 **0.1.1** Implemented hook for summary XML file.  Implemented ignore directories function.
 
