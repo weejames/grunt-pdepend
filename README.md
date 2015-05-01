@@ -25,13 +25,15 @@ In your project's Gruntfile, add a section named `pdepend` to the data object pa
 ```js
 grunt.initConfig({
   pdepend: {
-    options: {
-      // Task-specific options go here.
-    },
-    dir: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+    default: {
+      dir: [
+        // Task-specific options go here.
+      ],
+      options: {
+        // Task-specific options go here.
+      }
+    }
+  }
 });
 ```
 
@@ -133,22 +135,24 @@ Prints pdepend debugging information.
 ```js
 grunt.initConfig({
     pdepend: {
-        dir: [
-            'php'
-        ],
-        options: {
-            bin: 'vendor/bin/pdepend',
-            jdependChart: 'jdependChart.svg',
-            jdependXml: 'jdependXml.xml',
-            overviewPyramid: 'overviewPyramid.svg',
-            summaryXml: 'summaryXml.xml',
-            debug: true,
-            ignoreDirectories: [
-                'test',
-                'static'
-            ]
-        },
-    },
+        default: {
+            dir: [
+                'php'
+            ],
+            options: {
+                bin: 'vendor/bin/pdepend',
+                jdependChart: 'jdependChart.svg',
+                jdependXml: 'jdependXml.xml',
+                overviewPyramid: 'overviewPyramid.svg',
+                summaryXml: 'summaryXml.xml',
+                coderankMode: 'method',
+                debug: true,
+                ignoreDirectories: [
+                    'ignore'
+                ]
+            }
+        }
+    }
 });
 ```
 
